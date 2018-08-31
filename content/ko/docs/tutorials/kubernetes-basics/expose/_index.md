@@ -1,4 +1,4 @@
 ---
-title: Expose Your App Publicly
+title: 여러분의 앱을 퍼블릭으로 노출하기
 weight: 40
 ---
