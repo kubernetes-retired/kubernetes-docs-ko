@@ -17,6 +17,10 @@ Here are some of the sites that offer online training for Kubernetes:
 
 * [Getting Started with Kubernetes (Pluralsight)](https://www.pluralsight.com/courses/getting-started-kubernetes)
 
+* [Hands-on Introduction to Kubernetes (Instruqt)](https://play.instruqt.com/public/topics/getting-started-with-kubernetes)
+
+* [Learn Kubernetes using Interactive Hands-on Scenarios (Katacoda)](https://www.katacoda.com/courses/kubernetes/)
+
 {{% /capture %}}
 
 

@@ -54,7 +54,7 @@ this example.
     cat << EOF > /etc/systemd/system/kubelet.service.d/20-etcd-service-manager.conf
     [Service]
     ExecStart=
-    ExecStart=/usr/bin/kubelet --pod-manifest-path=/etc/kubernetes/manifests --allow-privileged=true
+    ExecStart=/usr/bin/kubelet --address=127.0.0.1 --pod-manifest-path=/etc/kubernetes/manifests --allow-privileged=true
     Restart=always
     EOF
 
@@ -86,7 +86,7 @@ this example.
     apiVersion: "kubeadm.k8s.io/v1alpha2"
     kind: MasterConfiguration
     etcd:
-        localEtcd:
+        local:
             serverCertSANs:
             - "${HOST}"
             peerCertSANs:
