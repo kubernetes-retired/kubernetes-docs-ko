@@ -6,8 +6,8 @@ weight: 5
 
 {{% capture overview %}}
 
-이 튜토리얼의 목표는 간단한 Node.js 로 작성된 Hello World 애플리케이션을 쿠버네티스에서 실행되는
-애플리케이션으로 변환하는 것 입니다.튜토리얼을 통해 로컬에서 작성된 코드를 Docker 컨테이너 이미지로
+이 튜토리얼의 목표는 Node.js 로 작성된 간단한 Hello World 애플리케이션을 쿠버네티스에서 실행되는
+애플리케이션으로 변환하는 것 입니다. 튜토리얼을 통해 로컬에서 작성된 코드를 Docker 컨테이너 이미지로
 변환한 다음, [Minikube](/docs/getting-started-guides/minikube)에서 해당 이미지를 실행하는
 방법을 보여줍니다. Minikube는 무료로 로컬 기기를 이용해서 쿠버네티스를 실행할 수 있는 간단한 방법을
 제공합니다.
@@ -16,10 +16,10 @@ weight: 5
 
 {{% capture objectives %}}
 
-* Node.js로 hello world 애플리케이션을 실행
-* Minikube에 만들어진 애플리케이션을 배포
-* 애플리케이션 로그의 확인
-* 애플리케이션 이미지 업데이트
+* Node.js로 hello world 애플리케이션을 실행합니다.
+* Minikube에 만들어진 애플리케이션을 배포합니다.
+* 애플리케이션 로그의 확인합니다.
+* 애플리케이션 이미지 업데이트합니다.
 
 
 {{% /capture %}}
@@ -29,7 +29,7 @@ weight: 5
 * macOS 의 경우, [Homebrew](https://brew.sh)를 사용하여 Minikube를 설치할 수 있습니다.
 
   {{< note >}}
-  **Note:** macOS 10.13 버전으로 업데이트 후 Homebrew에서 `brew update` 를 실행 시 다음과 같은 오류가 발생할 경우:
+  **참고:** macOS 10.13 버전으로 업데이트 후 Homebrew에서 `brew update` 를 실행 시 다음과 같은 오류가 발생할 경우:
 
   ```
   Error: /usr/local is not writable. You should change the ownership
@@ -57,8 +57,8 @@ weight: 5
 이 튜토리얼에서는 [Minikube](https://github.com/kubernetes/minikube)를 사용하여
 로컬 클러스터를 만듭니다. 이 튜토리얼에서는 macOS에서
 [Docker for Mac](https://docs.docker.com/engine/installation/mac/)을
-사용한다고 가정하였습니다. Docker for Mac 대신 Linux 혹은 VirtualBox 와 같이 다른 플랫폼을
-사용하는 경우, Minikube 를 설치하는 방법이 약간 다를 수 있습니다. 일반적인 Minikube 설치 지침은
+사용한다고 가정하였습니다. Docker for Mac 대신 Linux 혹은 VirtualBox와 같이 다른 플랫폼을
+사용하는 경우, Minikube를 설치하는 방법이 약간 다를 수 있습니다. 일반적인 Minikube 설치 지침은
 [Minikube installation guide](/docs/getting-started-guides/minikube/)
 를 참조하십시오.
 
@@ -77,7 +77,7 @@ Homebrew를 사용하여 쿠버네티스 클러스터와 상호 작용을 위한
 brew install kubernetes-cli
 ```
 
-프록시를 거치지않고 직접 https://cloud.google.com/container-registry/ 같은 사이트에 액세스 할 수 있는지 확인하려면 새 터미널을 열고 다음과 같이 실행하십시오.
+프록시를 거치지않고 직접 [https://cloud.google.com/container-registry/](https://cloud.google.com/container-registry/)같은 사이트에 액세스 할 수 있는지 확인하려면 새 터미널을 열고 다음과 같이 실행하십시오.
 
 ```shell
 curl --proxy "" https://cloud.google.com/container-registry/
@@ -94,17 +94,17 @@ docker images
 ```shell
 minikube start --vm-driver=hyperkit
 ```
-프록시가 필요한 경우, 다음 방법을 사용하여 프록시 설정으로 Minikube 클러스터를 시작:
+프록시가 필요한 경우, 다음 방법을 사용하여 프록시 설정과 함께 Minikube 클러스터를 시작:
 
 ```shell
 minikube start --vm-driver=hyperkit --docker-env HTTP_PROXY=http://your-http-proxy-host:your-http-proxy-port  --docker-env HTTPS_PROXY=http(s)://your-https-proxy-host:your-https-proxy-port
 ```
 
-명시된 `--vm-driver = hyperkit` 플래그는 Docker for Mac을 사용하고 있음을 의미합니다.
+`--vm-driver=hyperkit` 플래그는 Docker for Mac을 사용하고 있음을 의 합니다.
 기본 VM 드라이버는 VirtualBox입니다.
 
-이제 Minikube 컨텍스트를 설정하십시오. 컨텍스트는 `kubectl` 과 상호 작용하는
-클러스터를 결정합니다. `~/.kube/config` 파일에서 사용 가능한
+이제 Minikube 컨텍스트를 설정하십시오. 컨텍스트는 'kubectl'이 어떠한 클러스터와 상호작용 하려고
+하는지를 결정하는 내용입니다. `~/.kube/config` 파일에서 사용 가능한
 모든 컨텍스트를 볼 수 있습니다.
 
 ```shell
@@ -136,16 +136,16 @@ minikube dashboard
 node server.js
 ```
 
-http://localhost:8080/ 에 접속하여 "Hello World!" 라는 메세지를 확인 할 수 있습니다.
+http://localhost:8080/ 에 접속하여 "Hello World!"라는 메세지를 확인하여 주십시오. 
 
-Node.js 서버를 중단하려면 **Ctrl-C** 를 입력합니다.
+**Ctrl-C** 를 입력하면 실행 중인 Node.js 서버가 중단됩니다.
 
 다음 단계는 작성된 애플리케이션을 Docker 컨테이너로 변환해봅니다.
 
 ## Docker 컨테이너 이미지 만들기
 
 앞에서 사용하였던 `hellonode` 폴더에  `Dockerfile` 이라는 이름으로 파일을 만듭니다. Dockerfile
-은 작성하고자하는 이미지에 대한 구성요소를 미리 설정해놓은 파일입니다. 기존 이미지를 확장하여 Docker
+은 작성하고자하는 이미지에 대한 구성요소를 미리 설정해놓은 파일입니다 기존 이미지를 확장하여 Docker
 컨테이너 이미지를 작성할 수 있습니다. 이 튜토리얼에서는 기존 Node.js 이미지를 확장하여 사용합니다.
 
 {{< codenew language="conf" file="minikube/Dockerfile" >}}
@@ -164,7 +164,7 @@ eval $(minikube docker-env)
 ```
 
 {{< note >}}
-**Note:** 나중에 Minikube 호스트를 사용하지 않을 경우, `eval $ (minikube docker-env -u)`
+**참고:** 나중에 Minikube 호스트를 사용하지 않을 경우, `eval $ (minikube docker-env -u)`
 를 실행하여 변경을 취소 할 수 있습니다.
 {{< /note >}}
 
