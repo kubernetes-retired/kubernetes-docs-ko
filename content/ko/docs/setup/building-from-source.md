@@ -1,12 +1,12 @@
 ---
-title: Building from Source
+title: 소스로부터 빌드
 ---
 
 You can either build a release from source or download a pre-built release.  If you do not plan on developing Kubernetes itself, we suggest using a pre-built version of the current release, which can be found in the [Release Notes](/docs/imported/release/notes/).
 
 The Kubernetes source code can be downloaded from the [kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) repo.
 
-## Building from source
+## 소스로부터 빌드
 
 If you are simply building a release from source there is no need to set up a full golang environment as all building happens in a Docker container.
 
