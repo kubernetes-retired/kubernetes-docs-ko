@@ -1,6 +1,6 @@
 ---
 no_issue: true
-title: Setup
+title: 설치
 main_menu: true
 weight: 30
 ---
