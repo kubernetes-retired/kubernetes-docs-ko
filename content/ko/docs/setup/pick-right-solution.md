@@ -1,5 +1,5 @@
 ---
-title: Picking the Right Solution
+title: 알맞은 솔루션 선정
 content_template: templates/concept
 ---
 
@@ -25,7 +25,7 @@ a Kubernetes cluster from scratch.
 
 {{% capture body %}}
 
-## Local-machine Solutions
+## 로컬 머신 솔루션
 
 * [Minikube](/docs/setup/minikube/) is the recommended method for creating a local, single-node Kubernetes cluster for development and testing. Setup is completely automated and doesn't require a cloud provider account.
 
@@ -37,7 +37,7 @@ a Kubernetes cluster from scratch.
 
 * [IBM Cloud Private-CE (Community Edition) on Linux Containers](https://github.com/HSBawa/icp-ce-on-linux-containers) is a Terraform/Packer/BASH based Infrastructure as Code (IaC) scripts to create a seven node (1 Boot, 1 Master, 1 Management, 1 Proxy and 3 Workers) LXD cluster on  Linux Host.
 
-## Hosted Solutions
+## 호스트 된 솔루션
 
 * [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/) offers managed Kubernetes clusters.
 
@@ -69,7 +69,7 @@ a Kubernetes cluster from scratch.
 
 * [Kublr](https://kublr.com) offers enterprise-grade secure, scalable, highly reliable Kubernetes clusters on AWS, Azure, GCP, and on-premise. It includes out-of-the-box backup and disaster recovery, multi-cluster centralized logging and monitoring, and built-in alerting.
 
-# Turnkey Cloud Solutions
+# 턴키 클라우드 솔루션
 
 These solutions allow you to create Kubernetes clusters on a range of Cloud IaaS providers with only a
 few commands. These solutions are actively developed and have active community support.
@@ -91,7 +91,7 @@ few commands. These solutions are actively developed and have active community s
 * [Kublr](https://kublr.com/)
 * [Alibaba Cloud](/docs/setup/turnkey/alibaba-cloud/)
 
-## On-Premises turnkey cloud solutions
+## 온-프레미스 턴키 클라우드 솔루션	
 These solutions allow you to create Kubernetes clusters on your internal, secure, cloud network with only a
 few commands.
 
@@ -103,7 +103,7 @@ few commands.
 * [Kontena Pharos](https://kontena.io/pharos/)
 * [Kublr](https://kublr.com/)
 
-## Custom Solutions
+## 사용자 지정 솔루션
 
 Kubernetes can run on a wide range of Cloud providers and bare-metal environments, and with many
 base operating systems.
@@ -116,13 +116,13 @@ cluster, try the [Getting Started from Scratch](/docs/setup/scratch/) guide.
 If you are interested in supporting Kubernetes on a new platform, see
 [Writing a Getting Started Guide](https://git.k8s.io/community/contributors/devel/writing-a-getting-started-guide.md).
 
-### Universal
+### 일반
 
 If you already have a way to configure hosting resources, use
 [kubeadm](/docs/setup/independent/create-cluster-kubeadm/) to easily bring up a cluster
 with a single command per machine.
 
-### Cloud
+### 클라우드
 
 These solutions are combinations of cloud providers and operating systems not covered by the above solutions.
 
@@ -133,7 +133,7 @@ These solutions are combinations of cloud providers and operating systems not co
 * [Gardener](https://gardener.cloud/)
 * [Kublr](https://kublr.com/)
 
-### On-Premises VMs
+### 온-프레미스 VM
 
 * [Vagrant](/docs/setup/custom-cloud/coreos/) (uses CoreOS and flannel)
 * [CloudStack](/docs/setup/on-premises-vm/cloudstack/) (uses Ansible, CoreOS and flannel)
@@ -143,14 +143,14 @@ These solutions are combinations of cloud providers and operating systems not co
 * [oVirt](/docs/setup/on-premises-vm/ovirt/)
 * [Fedora (Multi Node)](/docs/getting-started-guides/fedora/flannel_multi_node_cluster/) (uses Fedora and flannel)
 
-### Bare Metal
+### 베어 메탈
 
 * [Fedora (Single Node)](/docs/getting-started-guides/fedora/fedora_manual_config/)
 * [Fedora (Multi Node)](/docs/getting-started-guides/fedora/flannel_multi_node_cluster/)
 * [Kubernetes on Ubuntu](/docs/getting-started-guides/ubuntu/)
 * [CoreOS](/docs/setup/custom-cloud/coreos/)
 
-### Integrations
+### 통합
 
 These solutions provide integration with third-party schedulers, resource managers, and/or lower level platforms.
 
@@ -158,7 +158,7 @@ These solutions provide integration with third-party schedulers, resource manage
   * Community Edition DCOS uses AWS
   * Enterprise Edition DCOS supports cloud hosting, on-premises VMs, and bare metal
 
-## Table of Solutions
+## 솔루션 표
 
 Below is a table of all of the solutions listed above.
 
@@ -209,7 +209,7 @@ Alibaba Cloud Container Service For Kubernetes | ROS        | CentOS | flannel/T
 **Note:** The above table is ordered by version test/used in nodes, followed by support level.
 {{< /note >}}
 
-### Definition of columns
+### 열 정의
 
 * **IaaS Provider** is the product or organization which provides the virtual or physical machines (nodes) that Kubernetes runs on.
 * **OS** is the base operating system of the nodes.

@@ -1,8 +1,8 @@
 ---
-title: Building Large Clusters
+title: 대형 클러스터 구축
 ---
 
-## Support
+## 지원
 
 At {{< param "version" >}}, Kubernetes supports clusters with up to 5000 nodes. More specifically, we support configurations that meet *all* of the following criteria:
 
@@ -15,7 +15,7 @@ At {{< param "version" >}}, Kubernetes supports clusters with up to 5000 nodes. 
 
 {{< toc >}}
 
-## Setup
+## 설치
 
 A cluster is a set of nodes (physical or virtual machines) running Kubernetes agents, managed by a "master" (the cluster-level control plane).
 
@@ -25,7 +25,7 @@ Simply changing that value to something very large, however, may cause the setup
 
 When setting up a large Kubernetes cluster, the following issues must be considered.
 
-### Quota Issues
+### 쿼터 문제
 
 To avoid running into cloud provider quota issues, when creating a cluster with many nodes, consider:
 
@@ -41,7 +41,7 @@ To avoid running into cloud provider quota issues, when creating a cluster with 
     * Target pools
 * Gating the setup script so that it brings up new node VMs in smaller batches with waits in between, because some cloud providers rate limit the creation of VMs.
 
-### Etcd storage
+### Etcd 저장소
 
 To improve performance of large clusters, we store events in a separate dedicated etcd instance.
 
@@ -50,7 +50,7 @@ When creating a cluster, existing salt scripts:
 * start and configure additional etcd instance
 * configure api-server to use it for storing events
 
-### Size of master and master components
+### 마스터 크기와 마스터 구성 요소
 
 On GCE/Google Kubernetes Engine, and AWS, `kube-up` automatically configures the proper VM size for your master depending on the number of nodes
 in your cluster. On other providers, you will need to configure it manually. For reference, the sizes we use on GCE are
@@ -77,7 +77,7 @@ On Google Kubernetes Engine, the size of the master node adjusts automatically b
 On AWS, master node sizes are currently set at cluster startup time and do not change, even if you later scale your cluster up or down by manually removing or adding nodes or using a cluster autoscaler.
 {{< /note >}}
 
-### Addon Resources
+### 애드온 자원
 
 To prevent memory leaks or other resource issues in [cluster addons](https://releases.k8s.io/{{< param "githubbranch" >}}/cluster/addons) from consuming all the resources available on a node, Kubernetes sets resource limits on addon containers to limit the CPU and Memory resources they can consume (See PR [#10653](http://pr.k8s.io/10653/files) and [#10778](http://pr.k8s.io/10778/files)).
 
@@ -116,7 +116,7 @@ For directions on how to detect if addon containers are hitting resource limits,
 In the [future](http://issue.k8s.io/13048), we anticipate to set all cluster addon resource limits based on cluster size, and to dynamically adjust them if you grow or shrink your cluster.
 We welcome PRs that implement those features.
 
-### Allowing minor node failure at startup
+### 시작 시 사소한 노드 오류 허용
 
 For various reasons (see [#18969](https://github.com/kubernetes/kubernetes/issues/18969) for more details) running
 `kube-up.sh` with a very large `NUM_NODES` may fail due to a very small number of nodes not coming up properly.
