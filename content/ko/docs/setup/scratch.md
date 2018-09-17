@@ -1,5 +1,5 @@
 ---
-title: Creating a Custom Cluster from Scratch
+title: 맨 처음부터 사용자 지정 클러스터 생성
 ---
 
 This guide is for people who want to craft a custom Kubernetes cluster.  If you
@@ -16,9 +16,9 @@ steps that existing cluster setup scripts are making.
 
 {{< toc >}}
 
-## Designing and Preparing
+## 설계 및 준비
 
-### Learning
+### 학습 계획
 
   1. You should be familiar with using Kubernetes already.  We suggest you set
     up a temporary cluster by following one of the other Getting Started Guides.
@@ -27,7 +27,7 @@ steps that existing cluster setup scripts are making.
     effect of completing one of the other Getting Started Guides.  If not, follow the instructions
     [here](/docs/tasks/kubectl/install/).
 
-### Cloud Provider
+### 클라우드 공급자
 
 Kubernetes has the concept of a Cloud Provider, which is a module which provides
 an interface for managing TCP Load Balancers, Nodes (Instances) and Networking Routes.
@@ -36,7 +36,7 @@ create a custom cluster without implementing a cloud provider (for example if us
 bare-metal), and not all parts of the interface need to be implemented, depending
 on how flags are set on various components.
 
-### Nodes
+### 노드
 
 - You can use virtual or physical machines.
 - While you can build a cluster with 1 machine, in order to run all the examples and tests you
@@ -50,9 +50,9 @@ on how flags are set on various components.
 - Other nodes can have any reasonable amount of memory and any number of cores.  They need not
   have identical configurations.
 
-### Network
+### 네트워크
 
-#### Network Connectivity
+#### 네트워크 연결
 Kubernetes has a distinctive [networking model](/docs/concepts/cluster-administration/networking/).
 
 Kubernetes allocates an IP address to each pod.  When creating a cluster, you
@@ -123,13 +123,13 @@ Also, you need to pick a static IP for master node.
 - Open any firewalls to allow access to the apiserver ports 80 and/or 443.
 - Enable ipv4 forwarding sysctl, `net.ipv4.ip_forward = 1`
 
-#### Network Policy
+#### 네트워크 폴리시
 
 Kubernetes enables the definition of fine-grained network policy between Pods using the [NetworkPolicy](/docs/concepts/services-networking/network-policies/) resource.
 
 Not all networking providers support the Kubernetes NetworkPolicy API, see [Using Network Policy](/docs/tasks/configure-pod-container/declare-network-policy/) for more information.
 
-### Cluster Naming
+### 클러스터 이름 구성
 
 You should pick a name for your cluster.  Pick a short name for each cluster
 which is unique from future cluster names. This will be used in several ways:
@@ -140,7 +140,7 @@ region of the world, etc.
   - Kubernetes clusters can create cloud provider resources (for example, AWS ELBs) and different clusters
     need to distinguish which resources each created.  Call this `CLUSTER_NAME`.
 
-### Software Binaries
+### 소프트웨어 바이너리
 
 You will need binaries for:
 
@@ -155,7 +155,7 @@ You will need binaries for:
     - kube-controller-manager
     - kube-scheduler
 
-#### Downloading and Extracting Kubernetes Binaries
+#### 쿠버네티스 바이너리 다운로드 및 압축 해제
 
 A Kubernetes binary release includes all the Kubernetes binaries as well as the supported release of etcd.
 You can use a Kubernetes binary release (recommended) or build your Kubernetes binaries following the instructions in the
@@ -168,7 +168,7 @@ Then locate `./kubernetes/server/kubernetes-server-linux-amd64.tar.gz` and unzip
 Then, within the second set of unzipped files, locate `./kubernetes/server/bin`, which contains
 all the necessary binaries.
 
-#### Selecting Images
+#### 이미지 선택
 
 You will run docker, kubelet, and kube-proxy outside of a container, the same way you would run any system daemon, so
 you just need the bare binaries.  For etcd, kube-apiserver, kube-controller-manager, and kube-scheduler,
@@ -202,7 +202,7 @@ The remainder of the document assumes that the image identifiers have been chose
   - `HYPERKUBE_IMAGE=k8s.gcr.io/hyperkube:$TAG`
   - `ETCD_IMAGE=k8s.gcr.io/etcd:$ETCD_VERSION`
 
-### Security Models
+### 보안 모델
 
 There are two main options for security:
 
@@ -216,7 +216,7 @@ There are two main options for security:
 
 If following the HTTPS approach, you will need to prepare certs and credentials.
 
-#### Preparing Certs
+#### 인증서 준비
 
 You need to prepare several certs:
 
@@ -243,7 +243,7 @@ You will end up with the following files (we will use these variables later on)
 - `KUBELET_KEY`
   - optional
 
-#### Preparing Credentials
+#### 자격 증명 준비
 
 The admin user (and any users) need:
 
@@ -307,7 +307,7 @@ Put the kubeconfig(s) on every node.  The examples later in this
 guide assume that there are kubeconfigs in `/var/lib/kube-proxy/kubeconfig` and
 `/var/lib/kubelet/kubeconfig`.
 
-## Configuring and Installing Base Software on Nodes
+## 노드의 기본 소프트웨어 구성 및 설치
 
 This section discusses how to configure machines to be Kubernetes nodes.
 
@@ -418,7 +418,7 @@ cannot be started successfully.
 For more details about debugging kube-proxy problems, refer to
 [Debug Services](/docs/tasks/debug-application-cluster/debug-service/)
 
-### Networking
+### 네트워킹
 
 Each node needs to be allocated its own CIDR range for pod networking.
 Call this `NODE_X_POD_CIDR`.
@@ -448,7 +448,7 @@ NOTE: This is environment specific.  Some environments will not need
 any masquerading at all.  Others, such as GCE, will not allow pod IPs to send
 traffic to the internet, but have no problem with them inside your GCE Project.
 
-### Other
+### 기타
 
 - Enable auto-upgrades for your OS package manager, if desired.
 - Configure log rotation for all node components (for example using [logrotate](http://linux.die.net/man/8/logrotate)).
@@ -457,14 +457,14 @@ traffic to the internet, but have no problem with them inside your GCE Project.
   - Install any client binaries for optional volume types, such as `glusterfs-client` for GlusterFS
     volumes.
 
-### Using Configuration Management
+### 구성 관리 사용
 
 The previous steps all involved "conventional" system administration techniques for setting up
 machines.  You may want to use a Configuration Management system to automate the node configuration
 process.  There are examples of [Saltstack](/docs/setup/salt/), Ansible, Juju, and CoreOS Cloud Config in the
 various Getting Started Guides.
 
-## Bootstrapping the Cluster
+## 클러스터 부트스트랩
 
 While the basic node services (kubelet, kube-proxy, docker) are typically started and managed using
 traditional system administration/automation approaches, the remaining *master* components of Kubernetes are
@@ -499,7 +499,7 @@ To run an etcd instance:
 1. Make any modifications needed
 1. Start the pod by putting it into the kubelet manifest directory
 
-### Apiserver, Controller Manager, and Scheduler
+### API 서버, 컨트롤러 관리자, 스케줄러
 
 The apiserver, controller manager, and scheduler will each run as a pod on the master node.
 
@@ -512,7 +512,7 @@ For each of these components, the steps to start them running are similar:
 1. Start the pod by putting the completed template into the kubelet manifest directory.
 1. Verify that the pod is started.
 
-#### Apiserver pod template
+#### API 서버 파드 템플릿
 
 ```json
 {
@@ -626,7 +626,7 @@ This pod mounts several node file system directories using the  `hostPath` volum
 
 *TODO* document proxy-ssh setup.
 
-##### Cloud Providers
+##### 클라우드 공급자
 
 Apiserver supports several cloud providers.
 
@@ -643,7 +643,7 @@ Some cloud providers require a config file. If so, you need to put config file i
 - AWS format defined by type [AWSCloudConfig](https://releases.k8s.io/{{< param "githubbranch" >}}/pkg/cloudprovider/providers/aws/aws.go)
 - There is a similar type in the corresponding file for other cloud providers.
 
-#### Scheduler pod template
+#### 스케줄러 파드 템플릿
 
 Complete this template for the scheduler pod:
 
@@ -688,7 +688,7 @@ Typically, no additional flags are required for the scheduler.
 
 Optionally, you may want to mount `/var/log` as well and redirect output there.
 
-#### Controller Manager Template
+#### 컨트롤러 관리자 템플릿
 
 Template for controller manager pod:
 
@@ -762,7 +762,7 @@ Flags to consider using with controller manager:
  - `--service-account-private-key-file=/srv/kubernetes/server.key`, used by the [service account](/docs/user-guide/service-accounts) feature.
  - `--master=127.0.0.1:8080`
 
-#### Starting and Verifying Apiserver, Scheduler, and Controller Manager
+#### API 서버, 스케줄러, 컨트롤러 관리자 시작 및 확인 
 
 Place each completed pod template into the kubelet config dir
 (whatever `--config=` argument of kubelet is set to, typically
@@ -793,7 +793,7 @@ If you have selected the `--register-node=true` option for kubelets, they will n
 You should soon be able to see all your nodes by running the `kubectl get nodes` command.
 Otherwise, you will need to manually create node objects.
 
-### Starting Cluster Services
+### 클러스터 서비스 시작
 
 You will want to complete your Kubernetes clusters by adding cluster-wide
 services.  These are sometimes called *addons*, and [an overview
@@ -814,9 +814,9 @@ Notes for setting up each cluster service are given below:
 * GUI
   * [Setup instructions](https://github.com/kubernetes/dashboard)
 
-## Troubleshooting
+## 문제 해결
 
-### Running validate-cluster
+### validate-cluster 명령 실행
 
 `cluster/validate-cluster.sh` is used by `cluster/kube-up.sh` to determine if
 the cluster start succeeded.
@@ -840,30 +840,30 @@ etcd-0               Healthy   {"health": "true"}
 Cluster validation succeeded
 ```
 
-### Inspect pods and services
+### 파드와 서비스 검사
 
 Try to run through the "Inspect your cluster" section in one of the other Getting Started Guides, such as [GCE](/docs/setup/turnkey/gce/#inspect-your-cluster).
 You should see some services.  You should also see "mirror pods" for the apiserver, scheduler and controller-manager, plus any add-ons you started.
 
-### Try Examples
+### 예제 실행하기
 
 At this point you should be able to run through one of the basic examples, such as the [nginx example](/examples/application/deployment.yaml).
 
-### Running the Conformance Test
+### 적합성 테스트 실행
 
 You may want to try to run the [Conformance test](http://releases.k8s.io/{{< param "githubbranch" >}}/test/e2e_node/conformance/run_test.sh).  Any failures may give a hint as to areas that need more attention.
 
-### Networking
+### 네트워킹
 
 The nodes must be able to connect to each other using their private IP. Verify this by
 pinging or SSH-ing from one node to another.
 
-### Getting Help
+### 도움말 얻기
 
 If you run into trouble, see the section on [troubleshooting](/docs/setup/turnkey/gce/#troubleshooting), post to the
 [kubernetes-users group](https://groups.google.com/forum/#!forum/kubernetes-users), or come ask questions on [Slack](/docs/troubleshooting#slack).
 
-## Support Level
+## 지원 레벨
 
 
 IaaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
