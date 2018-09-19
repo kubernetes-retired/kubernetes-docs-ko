@@ -2,7 +2,7 @@
 title: 소스로부터 빌드
 ---
 
-You can either build a release from source or download a pre-built release.  If you do not plan on developing Kubernetes itself, we suggest using a pre-built version of the current release, which can be found in the [Release Notes](/docs/imported/release/notes/).
+You can either build a release from source or download a pre-built release.  If you do not plan on developing Kubernetes itself, we suggest using a pre-built version of the current release, which can be found in the [Release Notes](/docs/setup/release/notes/).
 
 The Kubernetes source code can be downloaded from the [kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) repo.
 
