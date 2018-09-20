@@ -15,7 +15,7 @@ If your problem is not listed below, please follow the following steps:
   - Go to [github.com/kubernetes/kubeadm](https://github.com/kubernetes/kubeadm/issues) and search for existing issues.
   - If no issue exists, please [open one](https://github.com/kubernetes/kubeadm/issues/new) and follow the issue template.
 
-- If you are unsure about how kubeadm works, you can ask on Slack in #kubeadm, or open a question on StackOverflow. Please include
+- If you are unsure about how kubeadm works, you can ask on [Slack](http://slack.k8s.io/) in #kubeadm, or open a question on [StackOverflow](https://stackoverflow.com/questions/tagged/kubernetes). Please include
   relevant tags like `#kubernetes` and `#kubeadm` so folks can help you.
 
 {{% /capture %}}
@@ -123,7 +123,7 @@ Calico, Canal, and Flannel CNI providers are verified to support HostPort.
 For more information, see the [CNI portmap documentation](https://github.com/containernetworking/plugins/blob/master/plugins/meta/portmap/README.md).
 
 If your network provider does not support the portmap CNI plugin, you may need to use the [NodePort feature of
-services](/docs/concepts/services-networking/service/#type-nodeport) or use `HostNetwork=true`.
+services](/docs/concepts/services-networking/service/#nodeport) or use `HostNetwork=true`.
 
 ## Pods are not accessible via their Service IP
 
@@ -238,4 +238,25 @@ EOF
 )"
 
 ```
+
+## `coredns` pods have `CrashLoopBackOff` or `Error` state
+
+If you have nodes that are running SELinux with an older version of Docker you might experience a scenario
+where the `coredns` pods are not starting. To solve that you can try one of the following options:
+
+- Upgrade to a [newer version of Docker](/docs/setup/independent/install-kubeadm/#installing-docker).
+- [Disable SELinux](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-enabling_and_disabling_selinux-disabling_selinux).
+- Modify the `coredns` deployment to set `allowPrivilegeEscalation` to `true`:
+
+```bash
+kubectl -n kube-system get deployment coredns -o yaml | \
+  sed 's/allowPrivilegeEscalation: false/allowPrivilegeEscalation: true/g' | \
+  kubectl apply -f -
+```
+
+{{< warning >}}
+**Warning**: Disabling SELinux or setting `allowPrivilegeEscalation` to `true` can compromise
+the security of your cluster.
+{{< /warning >}}
+
 {{% /capture %}}

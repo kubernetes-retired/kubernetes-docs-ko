@@ -2,6 +2,12 @@
 title: Hello Minikube
 content_template: templates/tutorial
 weight: 5
+menu:
+  main:
+    title: "Get Started"
+    weight: 10
+    post: >
+      <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
 ---
 
 {{% capture overview %}}
@@ -262,9 +268,9 @@ kubectl get services
 출력:
 
 ```shell
-NAME         CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
-hello-node   10.0.0.71    <pending>     8080/TCP   6m
-kubernetes   10.0.0.1     <none>        443/TCP    14d
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+hello-node   ClusterIP   10.0.0.71    <pending>     8080/TCP   6m
+kubernetes   ClusterIP   10.0.0.1     <none>        443/TCP    14d
 ```
 
 `--type=LoadBalancer` 플래그는 해당 서비스를 클러스터 외에 노출 시키는 것을 의미합니다.
@@ -362,13 +368,13 @@ kubectl get po,svc -n kube-system
 
 ```shell
 NAME                             READY     STATUS    RESTARTS   AGE
-po/heapster-zbwzv                1/1       Running   0          2m
-po/influxdb-grafana-gtht9        2/2       Running   0          2m
+pod/heapster-zbwzv                1/1       Running   0          2m
+pod/influxdb-grafana-gtht9        2/2       Running   0          2m
 
-NAME                       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)             AGE
-svc/heapster               NodePort    10.0.0.52    <none>        80:31655/TCP        2m
-svc/monitoring-grafana     NodePort    10.0.0.33    <none>        80:30002/TCP        2m
-svc/monitoring-influxdb    ClusterIP   10.0.0.43    <none>        8083/TCP,8086/TCP   2m
+NAME                           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)             AGE
+service/heapster               NodePort    10.0.0.52    <none>        80:31655/TCP        2m
+service/monitoring-grafana     NodePort    10.0.0.33    <none>        80:30002/TCP        2m
+service/monitoring-influxdb    ClusterIP   10.0.0.43    <none>        8083/TCP,8086/TCP   2m
 ```
 
 브라우저에서 엔드포인트를 열어 heapster 와 상호작용:
@@ -421,3 +427,5 @@ minikube delete
 * [Service objects](/docs/concepts/services-networking/service/) 에 대해서 더 배워봅니다.
 
 {{% /capture %}}
+
+

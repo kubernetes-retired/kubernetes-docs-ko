@@ -1,5 +1,6 @@
 ---
 title: 알맞은 솔루션 선정
+weight: 10
 content_template: templates/concept
 ---
 
@@ -43,7 +44,7 @@ a Kubernetes cluster from scratch.
 
 * [Amazon Elastic Container Service for Kubernetes](https://aws.amazon.com/eks/) offers managed Kubernetes service.
 
-* [Azure Container Service](https://azure.microsoft.com/services/container-service/) offers managed Kubernetes clusters.
+* [Azure Kubernetes Service](https://azure.microsoft.com/services/container-service/) offers managed Kubernetes clusters.
 
 * [Stackpoint.io](https://stackpoint.io) provides Kubernetes infrastructure automation and management for multiple public clouds.
 
@@ -57,17 +58,17 @@ a Kubernetes cluster from scratch.
 
 * [OpenShift Online](https://www.openshift.com/features/) provides free hosted access for Kubernetes applications.
 
-* [IBM Cloud Container Service](https://console.bluemix.net/docs/containers/container_index.html) offers managed Kubernetes clusters with isolation choice, operational tools, integrated security insight into images and containers, and integration with Watson, IoT, and data.
+* [IBM Cloud Kubernetes Service](https://console.bluemix.net/docs/containers/container_index.html) offers managed Kubernetes clusters with isolation choice, operational tools, integrated security insight into images and containers, and integration with Watson, IoT, and data.
 
 * [Giant Swarm](https://giantswarm.io/product/) offers managed Kubernetes clusters in their own datacenter, on-premises, or on public clouds.
 
 * [Kubermatic](https://www.loodse.com) provides managed Kubernetes clusters for various public clouds, including AWS and Digital Ocean, as well as on-premises with OpenStack integration.
 
-* [Pivotal Container Service](https://pivotal.io/platform/pivotal-container-service) provides enterprise-grade Kubernetes for both on-premises and public clouds.  PKS enables on-demand provisioning of Kubernetes clusters, multi-tenancy and fully automated day-2 operations.
-
 * [Oracle Container Engine for Kubernetes](https://docs.us-phoenix-1.oraclecloud.com/Content/ContEng/Concepts/contengoverview.htm) is a fully-managed, scalable, and highly available service that you can use to deploy your containerized applications to the cloud.
 
 * [Kublr](https://kublr.com) offers enterprise-grade secure, scalable, highly reliable Kubernetes clusters on AWS, Azure, GCP, and on-premise. It includes out-of-the-box backup and disaster recovery, multi-cluster centralized logging and monitoring, and built-in alerting.
+
+* [APPUiO](https://appuio.ch) runs an OpenShift public cloud platform, supporting any Kubernetes workload. Additionally APPUiO offers Private Managed OpenShift Clusters, running on any public or private cloud.
 
 # 턴키 클라우드 솔루션
 
@@ -89,7 +90,10 @@ few commands. These solutions are actively developed and have active community s
 * [Gardener](https://gardener.cloud/)
 * [Kontena Pharos](https://kontena.io/pharos/)
 * [Kublr](https://kublr.com/)
+* [Agile Stacks](https://www.agilestacks.com/products/kubernetes)
 * [Alibaba Cloud](/docs/setup/turnkey/alibaba-cloud/)
+* [APPUiO](https://appuio.ch)
+* [Pivotal Container Service](https://pivotal.io/platform/pivotal-container-service)
 
 ## 온-프레미스 턴키 클라우드 솔루션	
 These solutions allow you to create Kubernetes clusters on your internal, secure, cloud network with only a
@@ -102,6 +106,9 @@ few commands.
 * [Rancher 2.0](https://rancher.com/docs/rancher/v2.x/en/)
 * [Kontena Pharos](https://kontena.io/pharos/)
 * [Kublr](https://kublr.com/)
+* [Agile Stacks](https://www.agilestacks.com/products/kubernetes)
+* [APPUiO](https://appuio.ch)
+* [Pivotal Container Service](https://pivotal.io/platform/pivotal-container-service)
 
 ## 사용자 지정 솔루션
 
@@ -174,7 +181,7 @@ Kublr       | custom       | multi-support | multi-support | [docs](http://docs.
 Kubermatic       |              | multi-support | multi-support | [docs](http://docs.kubermatic.io/) | Commercial
 Giant Swarm        |              | CoreOS | flannel and/or Calico | [docs](https://docs.giantswarm.io/) | Commercial
 GCE                  | Saltstack    | Debian | GCE         | [docs](/docs/setup/turnkey/gce/)                                    | Project
-Azure Container Service |              | Ubuntu | Azure       | [docs](https://azure.microsoft.com/en-us/services/container-service/)                    |  Commercial
+Azure Kubernetes Service |              | Ubuntu | Azure       | [docs](https://docs.microsoft.com/en-us/azure/aks/)                    |  Commercial
 Azure (IaaS)    |              | Ubuntu | Azure       | [docs](/docs/setup/turnkey/azure/)                    |  [Community (Microsoft)](https://github.com/Azure/acs-engine)
 Bare-metal           | custom       | Fedora | _none_      | [docs](/docs/getting-started-guides/fedora/fedora_manual_config/)            |  Project
 Bare-metal           | custom       | Fedora | flannel     | [docs](/docs/getting-started-guides/fedora/flannel_multi_node_cluster/)      |  Community ([@aveshagarwal](https://github.com/aveshagarwal))
@@ -204,6 +211,9 @@ any                  | any          | any    | any         | [docs](http://docs.
 any                  | RKE          | multi-support    | flannel or canal         | [docs](https://rancher.com/docs/rancher/v2.x/en/quick-start-guide/)                                |  [Commercial](https://rancher.com/what-is-rancher/overview/) and [Community](https://github.com/rancher/rancher)
 any                  | [Gardener Cluster-Operator](https://kubernetes.io/blog/2018/05/17/gardener/) | multi-support | multi-support | [docs](https://gardener.cloud) | [Project/Community](https://github.com/gardener) and [Commercial]( https://cloudplatform.sap.com/)
 Alibaba Cloud Container Service For Kubernetes | ROS        | CentOS | flannel/Terway       | [docs](https://www.aliyun.com/product/containerservice)                    |  Commercial
+Agile Stacks       | Terraform   | CoreOS | multi-support | [docs](https://www.agilestacks.com/products/kubernetes) | Commercial
+IBM Cloud Kubernetes Service | | Ubuntu | calico | [docs](https://console.bluemix.net/docs/containers/container_index.html) | Commercial
+
 
 {{< note >}}
 **Note:** The above table is ordered by version test/used in nodes, followed by support level.
