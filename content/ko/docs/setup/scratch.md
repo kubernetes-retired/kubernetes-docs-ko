@@ -861,7 +861,7 @@ pinging or SSH-ing from one node to another.
 ### 도움말 얻기
 
 If you run into trouble, see the section on [troubleshooting](/docs/setup/turnkey/gce/#troubleshooting), post to the
-[kubernetes-users group](https://groups.google.com/forum/#!forum/kubernetes-users), or come ask questions on [Slack](/docs/troubleshooting#slack).
+[Kubernetes Forum](https://discuss.kubernetes.io), or come ask questions on [Slack](/docs/troubleshooting#slack).
 
 ## 지원 레벨
 
