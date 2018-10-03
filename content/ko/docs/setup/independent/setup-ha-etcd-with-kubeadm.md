@@ -1,5 +1,5 @@
 ---
-title: Set up a Highly Availabile etcd Cluster With kubeadm
+title: Set up a High Availability etcd cluster with kubeadm
 content_template: templates/task
 weight: 60
 ---

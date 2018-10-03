@@ -70,7 +70,7 @@ a Kubernetes cluster from scratch.
 
 * [Stackpoint.io](https://stackpoint.io) provides Kubernetes infrastructure automation and management for multiple public clouds.
 
-# 턴키 클라우드 솔루션
+## 턴키 클라우드 솔루션
 
 These solutions allow you to create Kubernetes clusters on a range of Cloud IaaS providers with only a
 few commands. These solutions are actively developed and have active community support.
@@ -95,7 +95,7 @@ few commands. These solutions are actively developed and have active community s
 * [Stackpoint.io](/docs/setup/turnkey/stackpoint/)
 * [Tectonic by CoreOS](https://coreos.com/tectonic)
 
-## 온-프레미스 턴키 클라우드 솔루션	
+## 온-프레미스 턴키 클라우드 솔루션
 These solutions allow you to create Kubernetes clusters on your internal, secure, cloud network with only a
 few commands.
 
