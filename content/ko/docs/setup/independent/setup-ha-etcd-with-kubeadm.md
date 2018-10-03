@@ -1,5 +1,5 @@
 ---
-title: Set up a Highly Availabile etcd Cluster With kubeadm
+title: Set up a High Availability etcd cluster with kubeadm
 content_template: templates/task
 weight: 60
 ---
@@ -81,8 +81,8 @@ this example.
     HOST=${ETCDHOSTS[$i]}
     NAME=${NAMES[$i]}
     cat << EOF > /tmp/${HOST}/kubeadmcfg.yaml
-    apiVersion: "kubeadm.k8s.io/v1alpha2"
-    kind: MasterConfiguration
+    apiVersion: "kubeadm.k8s.io/v1alpha3"
+    kind: ClusterConfiguration
     etcd:
         local:
             serverCertSANs:
